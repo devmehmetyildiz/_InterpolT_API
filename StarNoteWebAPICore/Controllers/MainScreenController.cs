@@ -45,6 +45,21 @@ namespace StarNoteWebAPICore.Controllers
             }
             return response;
         }
+
+        [Route("GetJobOrders")]
+        [HttpGet]
+        public List<JobOrderModel> GetJobOrders()
+        {         
+            return unitOfWork.JoborderRepository.GetAll(); ;
+        }
+
+        [Route("GetCostumerOrders")]
+        [HttpGet]
+        public List<CostumerOrderModel> GetCostumerOrders()
+        {
+            return unitOfWork.CostumerorderRepository.GetAll(); ;
+        }
+
         [Route("Getselectedjoborders")]
         [HttpGet]
         public List<JobOrderModel> Getselectedjoborders(int Id)
