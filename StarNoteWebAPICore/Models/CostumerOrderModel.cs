@@ -144,6 +144,14 @@ namespace StarNoteWebAPICore.Models
             set { önödeme = value; }
         }
 
+        private double notergideri;
+        public double Notergideri
+        {
+            get { return notergideri; }
+            set { notergideri = value; }
+        }
+
+
         private double beklenentutar;
         public double Beklenentutar
         {

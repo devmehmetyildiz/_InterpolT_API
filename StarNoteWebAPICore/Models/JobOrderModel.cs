@@ -24,6 +24,14 @@ namespace StarNoteWebAPICore.Models
 
         }
 
+
+        private int lowerid;
+        public int Lowerid
+        {
+            get { return lowerid; }
+            set { lowerid = value; }
+        }
+
         private string joborder;
         public string Joborder
         {
