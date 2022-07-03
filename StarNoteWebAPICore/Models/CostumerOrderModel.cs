@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -256,6 +257,20 @@ namespace StarNoteWebAPICore.Models
         {
             get { return talimatkararno; }
             set { talimatkararno = value; }
+        }
+
+        private string producthistory;
+        public string Producthistory
+        {
+            get { return producthistory; }
+            set { producthistory = value; }
+        }
+
+        private string specialid;
+        public string Specialid
+        {
+            get { return specialid; }
+            set { specialid = value; }
         }
 
     }

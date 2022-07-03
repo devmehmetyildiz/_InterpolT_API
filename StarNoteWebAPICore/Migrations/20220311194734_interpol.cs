@@ -411,8 +411,8 @@ namespace StarNoteWebAPICore.Migrations
             //    });
 
           
-            migrationBuilder.AddColumn<string>("Notergideri", "tbl_customerorder", type: "double", nullable: true);
-            migrationBuilder.AddColumn<string>("Lowerid", "tbl_joborder", type: "int", nullable: true);
+          //  migrationBuilder.AddColumn<string>("Notergideri", "tbl_customerorder", type: "double", nullable: true);
+          // migrationBuilder.AddColumn<string>("Lowerid", "tbl_joborder", type: "int", nullable: true);
 
         }
 

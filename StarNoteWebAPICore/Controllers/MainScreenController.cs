@@ -381,6 +381,27 @@ namespace StarNoteWebAPICore.Controllers
             return unitOfWork.FilemanagementRepository.GetSelectedFiles(id);
         }
 
+        [Route("Updatehistorycolumn")]
+        [HttpGet]
+        public IActionResult Updatehistorycolumn()
+        {
+            List<CostumerOrderModel> costumerorderlist = unitOfWork.CostumerorderRepository.GetAll();
+            List<JobOrderModel> joborderlist = unitOfWork.JoborderRepository.GetAll();
+            foreach (var item in costumerorderlist)
+            {
+                item.Producthistory = "";
+                foreach (var subdata in joborderlist.Where(u => u.Üstid == item.Id).ToList())
+                {
+                    item.Producthistory += $"{subdata.Miktar} {subdata.Birim} {subdata.Ürün2detay}, "; 
+                }
+            }
+            foreach (var item in costumerorderlist)
+            {
+                unitOfWork.CostumerorderRepository.update(unitOfWork.CostumerorderRepository.Getbyid(item.Id), item);
+            }
+            unitOfWork.Complate();
+            return Ok();
+        }
         
     }
     public class helperclass
