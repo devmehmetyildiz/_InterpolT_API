@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -21,5 +22,7 @@ namespace StarNoteWebAPICore.Models
             set { joborder = value; }
         }
 
+        [NotMapped]
+        public bool IsNewRecord { get; set; }
     }
 }

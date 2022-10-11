@@ -140,6 +140,40 @@ namespace StarNoteWebAPICore.Controllers
         [HttpPost]
         public bool AddMain(OrderModel objmain)
         {
+            if (objmain.IsNewRecord)
+            {
+                if (objmain.Costumerorder.Tür == "ÖZEL MÜŞTERİLER")
+                {
+                    CostumerModel model = new()
+                    {
+                        Adres = objmain.Costumerorder.Adres,
+                        Eposta = objmain.Costumerorder.Eposta,
+                        Tckimlik = objmain.Costumerorder.Tckimlik,
+                        Telefon = objmain.Costumerorder.Telefon,
+                        İlçe = objmain.Costumerorder.İlçe,
+                        İsim = objmain.Costumerorder.İsim,
+                        Şehir = objmain.Costumerorder.Şehir
+                    };
+                    unitOfWork.CostumerRepository.Add(model);
+                }
+                else if (objmain.Costumerorder.Tür != "ŞİRKETLER")
+                {
+                    CompanyModel model = new()
+                    {
+                        İlçe = objmain.Costumerorder.İlçe,
+                        Companyadress = objmain.Costumerorder.Adres,
+                        Companyname = objmain.Costumerorder.Firmaadı,
+                        İsim = objmain.Costumerorder.İsim,
+                        Telefon = objmain.Costumerorder.Telefon,
+                        Eposta = objmain.Costumerorder.Eposta,
+                        Taxname = objmain.Costumerorder.Vergidairesi,
+                        Taxno = objmain.Costumerorder.Vergino,
+                        Tckimlik = objmain.Costumerorder.Tckimlik,
+                        Şehir = objmain.Costumerorder.Şehir
+                    };
+                    unitOfWork.CompanyRepository.Add(model);
+                }
+            }
             bool IsAdded = false;
             bool isdava = false;
             if (objmain.Costumerorder.Tür != "ÖZEL MÜŞTERİLER" && objmain.Costumerorder.Tür != "ŞİRKETLER")
@@ -402,7 +436,62 @@ namespace StarNoteWebAPICore.Controllers
             unitOfWork.Complate();
             return Ok();
         }
-        
+
+
+        [Route("Updateallcostumers")]
+        [HttpGet]
+        public IActionResult Updateallcostumers()
+        {
+            List<CostumerOrderModel> Orders = unitOfWork.CostumerorderRepository.GetAll();
+            foreach (var item in Orders)
+            {
+                if (item.Tür == "ÖZEL MÜŞTERİLER")
+                {
+                    CostumerModel model = new()
+                    {
+                        Adres = item.Adres,
+                        Eposta = item.Eposta,
+                        Tckimlik = item.Tckimlik,
+                        Telefon = item.Telefon,
+                        İlçe = item.İlçe,
+                        İsim = item.İsim,
+                        Şehir = item.Şehir
+                    };
+                    unitOfWork.CostumerRepository.Add(model);
+                }
+            }
+            unitOfWork.Complate();
+            return Ok(unitOfWork.CostumerRepository.GetAll());
+        }
+
+        [Route("Updateallcompany")]
+        [HttpGet]
+        public IActionResult Updateallcompany()
+        {
+            List<CostumerOrderModel> Orders = unitOfWork.CostumerorderRepository.GetAll();
+            foreach (var item in Orders)
+            { //"companyname": "ŞAHIS",
+                if (item.Tür == "ŞİRKETLER" && item.Firmaadı != "ŞAHIS")
+                {
+                    CompanyModel model = new()
+                    {
+                        Eposta = item.Eposta,
+                        Tckimlik = item.Tckimlik,
+                        Telefon = item.Telefon,
+                        İlçe = item.İlçe,
+                        İsim = item.İsim,
+                        Şehir = item.Şehir,
+                        Companyadress = item.Firmaadresi,
+                        Companyname = item.Firmaadı,
+                        Taxname=item.Vergidairesi,
+                        Taxno=item.Vergino
+                    };
+                    unitOfWork.CompanyRepository.Add(model);
+                }
+            }
+            unitOfWork.Complate();
+            return Ok(unitOfWork.CompanyRepository.GetAll());
+        }
     }
     public class helperclass
     {
