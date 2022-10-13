@@ -28,6 +28,7 @@ namespace StarNoteWebAPICore.DataAccess
         ITypeRepository TypeRepository { get; }
         IUnitRepository UnitRepository { get; }
         IUserRepository UserRepository { get; }
+        IReportsettingsRepository ReportsettingsRepository { get; }
         int Complate();
     }
 }

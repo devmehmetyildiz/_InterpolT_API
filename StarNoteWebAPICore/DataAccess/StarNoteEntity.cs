@@ -57,6 +57,7 @@ namespace StarNoteWebAPICore.DataAccess
         public DbSet<partial_saleschart> partial_saleschart { get; set; }
         public DbSet<partial_salesman> partial_salesman { get; set; }
         public DbSet<partial_salespie> partial_salespie { get; set; }
+        public DbSet<ReportsettingModel> tbl_reportsettings { get; set; }
 
     }
 }

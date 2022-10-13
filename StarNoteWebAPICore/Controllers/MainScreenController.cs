@@ -156,7 +156,7 @@ namespace StarNoteWebAPICore.Controllers
                     };
                     unitOfWork.CostumerRepository.Add(model);
                 }
-                else if (objmain.Costumerorder.Tür != "ŞİRKETLER")
+                else if (objmain.Costumerorder.Tür == "ŞİRKETLER")
                 {
                     CompanyModel model = new()
                     {

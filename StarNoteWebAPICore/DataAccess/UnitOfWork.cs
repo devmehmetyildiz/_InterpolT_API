@@ -31,7 +31,8 @@ namespace StarNoteWebAPICore.DataAccess
             TypedetailRepository = new TypedetailRepository(_starnoteapicontext);
             TypeRepository = new TypeRepository(_starnoteapicontext);
             UnitRepository = new UnitRepository(_starnoteapicontext);
-            UserRepository = new UserRepository(_starnoteapicontext);          
+            UserRepository = new UserRepository(_starnoteapicontext);
+            ReportsettingsRepository = new ReportsettingsRepository(_starnoteapicontext);
         }
 
         public ICaseRepository CaseRepository { get; private set; }
@@ -70,6 +71,8 @@ namespace StarNoteWebAPICore.DataAccess
         public IUnitRepository UnitRepository { get; private set; }
 
         public IUserRepository UserRepository { get; private set; }
+
+        public IReportsettingsRepository ReportsettingsRepository { get; private set; }
 
         public int Complate()
         {
